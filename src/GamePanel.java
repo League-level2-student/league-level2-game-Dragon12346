@@ -32,11 +32,8 @@ public class GamePanel extends JPanel implements KeyListener {
 	 void updateEndState()  {  }
 	 void drawMenuState(Graphics g) {
 		 if (gotImage) {
-				g.drawImage(image, x, y, width, height, null);
-			} else {
-				g.setColor(Color.BLUE);
-				g.fillRect(x, y, width, height);
-			}
+				g.drawImage(image, 0, 0, RPGRunner.WIDTH, RPGRunner.HEIGHT, null);}
+			} 
 	 void drawGameState(Graphics g) {  }
 	 void drawEndState(Graphics g)  {  }
 	
