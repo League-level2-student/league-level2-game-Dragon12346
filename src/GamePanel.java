@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements KeyListener {
+	Scene menuS;
 	  final int MENU = 0;
 	    final int GAME = 1;
 	    final int END = 2;
@@ -21,19 +22,14 @@ public class GamePanel extends JPanel implements KeyListener {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	public GamePanel() {
-		if (needImage) {
-			loadImage("dumster.png");
-		}
-		
+		menuS = new Scene();
+		menuS.sceneObjects.add(new GameObject(10,10,100,100,"dumpster.png"));
 	}
 	
 	 void updateMenuState() {  }
 	 void updateGameState() {  }
 	 void updateEndState()  {  }
-	 void drawMenuState(Graphics g) {
-		 if (gotImage) {
-				g.drawImage(image, 0, 0, RPGRunner.WIDTH, RPGRunner.HEIGHT, null);}
-			} 
+	 void drawMenuState(Graphics g) { menuS.draw(g); }
 	 void drawGameState(Graphics g) {  }
 	 void drawEndState(Graphics g)  {  }
 	
