@@ -9,8 +9,8 @@ public class Player extends GameObject {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 
-	Player(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	Player(int x, int y, int width, int height, String fileName) {
+		super(x, y, width, height, fileName);
 		if (needImage) {
 			loadImage("alien.png");
 		}
