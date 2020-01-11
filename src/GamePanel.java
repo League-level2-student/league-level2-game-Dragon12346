@@ -23,7 +23,8 @@ public class GamePanel extends JPanel implements KeyListener {
 	public static boolean gotImage = false;
 	public GamePanel() {
 		menuS = new Scene();
-		menuS.sceneObjects.add(new GameObject(10,10,500,500,"dumpster.png"));
+		menuS.sceneObjects.add(new GameObject(0,0,100,100,"DumpsterBase.png"));
+		menuS.sceneObjects.add(new GameObject(550,190,50,75,"dumpster.png"));
 	}
 	
 	 void updateMenuState() {  }

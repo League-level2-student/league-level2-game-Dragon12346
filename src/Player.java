@@ -12,7 +12,7 @@ public class Player extends GameObject {
 	Player(int x, int y, int width, int height, String fileName) {
 		super(x, y, width, height, fileName);
 		if (needImage) {
-			loadImage("alien.png");
+			loadImage("TrashBags.png");
 		}
 	}
 
