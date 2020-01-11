@@ -12,8 +12,10 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class GamePanel extends JPanel implements KeyListener {
+public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	Scene menuS;
+	Player hero;
+	Timer frameDraw;
 	  final int MENU = 0;
 	    final int GAME = 1;
 	    final int END = 2;
@@ -22,15 +24,18 @@ public class GamePanel extends JPanel implements KeyListener {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	public GamePanel() {
+		hero = new Player(10,10,100,150,"hero");
 		menuS = new Scene();
-		menuS.sceneObjects.add(new GameObject(0,0,100,100,"DumpsterBase.png"));
-		menuS.sceneObjects.add(new GameObject(550,190,50,75,"dumpster.png"));
+		menuS.sceneObjects.add(new GameObject(0,0,800,800,"DumpsterBase.png"));
+		menuS.sceneObjects.add(new GameObject(550,190,250,250,"dumpster.png"));
+		frameDraw = new Timer(1000 / 120, this);
+		frameDraw.start();
 	}
 	
 	 void updateMenuState() {  }
 	 void updateGameState() {  }
 	 void updateEndState()  {  }
-	 void drawMenuState(Graphics g) { menuS.draw(g); }
+	 void drawMenuState(Graphics g) { menuS.draw(g); hero.draw(g);}
 	 void drawGameState(Graphics g) {  }
 	 void drawEndState(Graphics g)  {  }
 	
@@ -67,9 +72,42 @@ public class GamePanel extends JPanel implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			System.out.println("LEFT");
+			if (hero.x > 0) {
+				hero.left();
+			} else {
+				hero.x = 0;
+			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("RIGHT");
+			if (hero.x + 50 < RPGRunner.WIDTH) {
+				hero.right();
+			} else {
+				hero.x = RPGRunner.WIDTH - 50;
+			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			System.out.println("DOWN");
 
+			if (hero.y < RPGRunner.HEIGHT - 70) {
+				hero.down();
+			} else {
+				hero.y = RPGRunner.HEIGHT - 70;
+			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			System.out.println("UP");
+			if (hero.y > 0) {
+				hero.up();
+			}
+		}
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) { 
+		repaint();
+	}
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub

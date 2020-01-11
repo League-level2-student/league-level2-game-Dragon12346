@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 public class GameObject {
-	public static BufferedImage image;
-	public static boolean needImage = true;
-	public static boolean gotImage = false;
+	public BufferedImage image;
+	public boolean needImage = true;
+	public boolean gotImage = false;
 
 	boolean isActive = true;
 	int x;
@@ -15,7 +15,7 @@ public class GameObject {
 	int width;
 	int height;
 	Rectangle collisionBox;
-	int speed = 20;
+	int speed = 15;
 
 
 	GameObject(int x, int y, int width, int height, String fileName) {
@@ -25,7 +25,6 @@ public class GameObject {
 		this.width = width;
 		collisionBox = new Rectangle();
 		collisionBox.setBounds(x, y, width, height);
-		loadImage(fileName);
 	}
 
 	public void update() {
