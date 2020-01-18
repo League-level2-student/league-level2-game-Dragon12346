@@ -1,4 +1,9 @@
- import javax.swing.JFrame;
+ import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class RPGRunner {
@@ -16,6 +21,13 @@ void setup(){
 	frame.setSize(WIDTH, HEIGHT);
 	frame.setVisible(true);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+	setCursor();
+	frame.addMouseListener(gp);
 }
+	void setCursor() {
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image im = tk.getImage("src/CursorOrig.png");
+		Cursor mouse = tk.createCustomCursor(im, new Point(0,0),"img");
+		frame.setCursor(mouse);
+	}
 }

@@ -7,12 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class GamePanel extends JPanel implements KeyListener, ActionListener {
+public class GamePanel extends JPanel implements KeyListener, ActionListener, MouseListener {
 	Scene DumpS;
 	Scene MenuS;
 	Player hero;
@@ -27,11 +29,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public GamePanel() {
 		hero = new Player(480,210,100,150,"hero");
 		DumpS = new Scene();
+		DumpS.add(new GameObject(0,0,800,800,"DumpsterBase.png"));
+		DumpS.add(new GameObject(550,190,250,250,"dumpster.png"));
+		DumpS.add(new GameObject(0,0,170,210,"trashcan.png"));
+		DumpS.add(new GameObject(30,110,100,100,"TrashBags.png"));
 		MenuS = new Scene();
-		DumpS.sceneObjects.add(new GameObject(0,0,800,800,"DumpsterBase.png"));
-		DumpS.sceneObjects.add(new GameObject(550,190,250,250,"dumpster.png"));
-		DumpS.sceneObjects.add(new GameObject(0,0,170,210,"trashcan.png"));
-		DumpS.sceneObjects.add(new GameObject(30,110,100,100,"TrashBags.png"));
+		MenuS.add(new GameObject(0, 0, 800, 800, "CastleBackground.gif"));
+		MenuS.add(new GameObject(40, 600, 300, 100, "StartButton.png"));
+		MenuS.add(new GameObject(450, 600, 300, 100, "HelpButton.png"));
 		frameDraw = new Timer(1000 / 120, this);
 		frameDraw.start();
 	}
@@ -114,6 +119,43 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (currentState == MENU) {
+			if (MenuS.sceneObjects.get(1).isClicked(e.getX(), e.getY())) {
+				currentState = GAME;
+			}
+			if (MenuS.sceneObjects.get(2).isClicked(e.getX(), e.getY())) {
+				System.out.println("REEEEEEEEEEEEEEEEEE");
+			}
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

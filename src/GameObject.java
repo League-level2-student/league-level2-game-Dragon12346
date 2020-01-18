@@ -49,4 +49,11 @@ public class GameObject {
 			needImage = false;
 		}
 	}
+	boolean isClicked(int x,int y) {
+		Rectangle mouse = new Rectangle(x,y,1,1);
+		if (mouse.intersects(collisionBox)) {
+			return true;
+		}
+		return false;
+	}
 }

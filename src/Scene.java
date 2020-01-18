@@ -8,5 +8,8 @@ ArrayList<GameObject> sceneObjects = new ArrayList <GameObject>();
 			o.draw(g);
 		}
 	}
+	void add(GameObject obj) {
+		sceneObjects.add(obj);
+	}
 	
 }
