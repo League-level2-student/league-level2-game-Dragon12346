@@ -25,6 +25,9 @@ public class GameObject {
 		this.width = width;
 		collisionBox = new Rectangle();
 		collisionBox.setBounds(x, y, width, height);
+		if (needImage) {
+			loadImage(fileName);
+		}
 	}
 
 	public void update() {

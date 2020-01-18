@@ -12,6 +12,7 @@ public class Player extends GameObject {
 	Player(int x, int y, int width, int height, String fileName) {
 		super(x, y, width, height, fileName);
 		image = new BufferedImage[4];
+		needImage = true;
 		if (needImage) {
 			loadImage(fileName);
 		}

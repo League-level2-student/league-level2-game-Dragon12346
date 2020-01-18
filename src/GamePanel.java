@@ -13,7 +13,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
-	Scene menuS;
+	Scene DumpS;
+	Scene MenuS;
 	Player hero;
 	Timer frameDraw;
 	  final int MENU = 0;
@@ -24,10 +25,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	public GamePanel() {
-		hero = new Player(10,10,100,150,"hero");
-		menuS = new Scene();
-		menuS.sceneObjects.add(new GameObject(0,0,800,800,"DumpsterBase.png"));
-		menuS.sceneObjects.add(new GameObject(550,190,250,250,"dumpster.png"));
+		hero = new Player(480,210,100,150,"hero");
+		DumpS = new Scene();
+		MenuS = new Scene();
+		DumpS.sceneObjects.add(new GameObject(0,0,800,800,"DumpsterBase.png"));
+		DumpS.sceneObjects.add(new GameObject(550,190,250,250,"dumpster.png"));
+		DumpS.sceneObjects.add(new GameObject(0,0,170,210,"trashcan.png"));
+		DumpS.sceneObjects.add(new GameObject(30,110,100,100,"TrashBags.png"));
 		frameDraw = new Timer(1000 / 120, this);
 		frameDraw.start();
 	}
@@ -35,8 +39,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 	 void updateMenuState() {  }
 	 void updateGameState() {  }
 	 void updateEndState()  {  }
-	 void drawMenuState(Graphics g) { menuS.draw(g); hero.draw(g);}
-	 void drawGameState(Graphics g) {  }
+	 void drawMenuState(Graphics g) { MenuS.draw(g); }
+	 void drawGameState(Graphics g) { DumpS.draw(g); hero.draw(g); }
 	 void drawEndState(Graphics g)  {  }
 	
 	@Override
