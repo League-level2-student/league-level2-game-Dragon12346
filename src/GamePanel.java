@@ -17,11 +17,12 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel implements KeyListener, ActionListener, MouseListener {
 	Scene DumpS;
 	Scene MenuS;
+	Scene HelpS;
 	Player hero;
 	Timer frameDraw;
 	  final int MENU = 0;
 	    final int GAME = 1;
-	    final int END = 2;
+	    final int HELP = 2;
 	    int currentState = MENU;
 	public static BufferedImage image;
 	public static boolean needImage = true;
@@ -29,6 +30,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 	public GamePanel() {
 		hero = new Player(480,210,100,150,"hero");
 		DumpS = new Scene();
+		HelpS = new Scene();
 		DumpS.add(new GameObject(0,0,800,800,"DumpsterBase.png"));
 		DumpS.add(new GameObject(550,190,250,250,"dumpster.png"));
 		DumpS.add(new GameObject(0,0,170,210,"trashcan.png"));
@@ -46,7 +48,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 	 void updateEndState()  {  }
 	 void drawMenuState(Graphics g) { MenuS.draw(g); }
 	 void drawGameState(Graphics g) { DumpS.draw(g); hero.draw(g); }
-	 void drawEndState(Graphics g)  {  }
+	 void drawHelpState(Graphics g)  { HelpS.draw(g); }
 	
 	@Override
 	public void paintComponent(Graphics g){
@@ -54,8 +56,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 		    drawMenuState(g);
 		}else if(currentState == GAME){
 		    drawGameState(g);
-		}else if(currentState == END){
-		    drawEndState(g);
+		}else if(currentState == HELP){
+		    drawHelpState(g);
 		}
 	}
 	
