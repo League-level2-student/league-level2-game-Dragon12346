@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener, MouseListener {
 	Scene DumpS;
+	Scene HelpM;
 	Scene MenuS;
 	Scene HelpS;
 	Player hero;
@@ -39,6 +40,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 		MenuS.add(new GameObject(0, 0, 800, 800, "CastleBackground.gif"));
 		MenuS.add(new GameObject(40, 600, 300, 100, "StartButton.png"));
 		MenuS.add(new GameObject(450, 600, 300, 100, "HelpButton.png"));
+		HelpM = new Scene();
+		HelpM.add(new GameObject(0,0,100,100,"helpTitle.png"));
 		frameDraw = new Timer(1000 / 120, this);
 		frameDraw.start();
 	}
@@ -133,7 +136,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 				currentState = GAME;
 			}
 			if (MenuS.sceneObjects.get(2).isClicked(e.getX(), e.getY())) {
-				System.out.println("REEEEEEEEEEEEEEEEEE");
+				currentState = HELP;
 			}
 		}
 	}
