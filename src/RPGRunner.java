@@ -16,6 +16,7 @@ RPGRunner F = new RPGRunner();
 F.setup();
 }
 void setup(){
+	
 	frame.add(gp);
 	frame.addKeyListener(gp);
 	frame.setSize(WIDTH, HEIGHT);
