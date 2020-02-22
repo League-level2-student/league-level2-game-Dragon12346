@@ -9,7 +9,7 @@ public class Player extends GameObject {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
 	int imageNum = 0;
-	Player(int x, int y, int width, int height, String fileName) {
+	Player(int x, int y, int width, int height, String fileName, int health) {
 		super(x, y, width, height, fileName);
 		image = new BufferedImage[4];
 		needImage = true;

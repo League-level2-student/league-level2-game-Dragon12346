@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 	Scene HelpM;
 	Scene MenuS;
 	Scene HelpS;
+	Scene SkF;
 	Player hero;
 	Timer frameDraw;
 	JFrame frame;
@@ -33,13 +34,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 	public static boolean gotImage = false;
 
 	public GamePanel() {
-		hero = new Player(480, 210, 100, 150, "hero");
+		hero = new Player(480, 210, 100, 150, "hero", 100);
 		DumpS = new Scene();
 		HelpS = new Scene();
 		DumpS.add(new GameObject(0, 0, 800, 800, "DumpsterBase.png"));
 		DumpS.add(new GameObject(550, 190, 250, 250, "dumpster.png"));
 		DumpS.add(new GameObject(0, 0, 170, 210, "trashcan.png"));
 		DumpS.add(new GameObject(30, 110, 100, 100, "TrashBags.png"));
+		DumpS.add(new GameObject(300,300,150,170,"skele.png"));
 		MenuS = new Scene();
 		MenuS.add(new GameObject(0, 0, 800, 800, "CastleBackground.gif"));
 		MenuS.add(new GameObject(40, 600, 300, 100, "StartButton.png"));
@@ -47,6 +49,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 		HelpM = new Scene();
 		HelpM.add(new GameObject(0, 0, 800, 800, "helpMenu.png"));
 		HelpM.add(new GameObject(0, 0, 890, 100, "helpTitle.png"));
+		SkF = new Scene();
+		
 		frameDraw = new Timer(1000 / 120, this);
 		frameDraw.start();
 	}
@@ -55,6 +59,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 	}
 
 	void updateGameState() {
+		hero.update();
 	}
 
 	void updateEndState() {
@@ -136,11 +141,28 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 				hero.up();
 			}
 		}
+		if (e.getKeyCode() == KeyEvent.VK_I) {
+			
+			}
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				
+			if (currentState == GAME) {
+				System.out.println(hero.x + " " + hero.y);
+					if (hero.collisionBox.intersects((DumpS.sceneObjects.get(4)).collisionBox)) {
+						System.out.println("yee");
+						
+					}
+
+			}
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
+		if (currentState == GAME) {
+			updateGameState();
+		}
 	}
 
 	@Override
@@ -160,10 +182,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 				currentState = HELP;
 			}
 		}
-		if (currentState == GAME) {
-	
 
-		}
 	}
 
 	@Override
