@@ -28,6 +28,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 	final int MENU = 0;
 	final int GAME = 1;
 	final int HELP = 2;
+	final int SkF1 = 3;
 	int currentState = MENU;
 	public static BufferedImage image;
 	public static boolean needImage = true;
@@ -50,7 +51,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 		HelpM.add(new GameObject(0, 0, 800, 800, "helpMenu.png"));
 		HelpM.add(new GameObject(0, 0, 890, 100, "helpTitle.png"));
 		SkF = new Scene();
-		
+		SkF.add(new GameObject(0, 0, 890, 1000, ".png"));
 		frameDraw = new Timer(1000 / 120, this);
 		frameDraw.start();
 	}
@@ -77,7 +78,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 	void drawHelpState(Graphics g) {
 		HelpM.draw(g);
 	}
-
+	
+	void drawSkF(Graphics g) {
+		SkF.draw(g);
+	}
 	@Override
 	public void paintComponent(Graphics g) {
 		if (currentState == MENU) {
@@ -86,6 +90,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 			drawGameState(g);
 		} else if (currentState == HELP) {
 			drawHelpState(g);
+		} else if (currentState == SkF1) {
+			drawSkF(g);
 		}
 	}
 
@@ -149,8 +155,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener, Mo
 			if (currentState == GAME) {
 				System.out.println(hero.x + " " + hero.y);
 					if (hero.collisionBox.intersects((DumpS.sceneObjects.get(4)).collisionBox)) {
-						System.out.println("yee");
-						
+						currentState = SkF1;
 					}
 
 			}
